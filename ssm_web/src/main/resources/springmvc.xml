@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="cn.hz.web"/>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/img/**" location="/img/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
+    <mvc:resources mapping="/plugins/**" location="/plugins/"/>
+
+    <!-- 开启对SpringMVC注解的支持 -->
+    <!--
+        相当于注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter两个bean
+        1、会自动注册RequestMappingHandlerMapping、RequestMappingHandlerAdapter、ExceptionHandlerExceptionResolver三个bean
+        支持使用了像@RquestMapping、ExceptionHandler等等的注解的controller 方法去处理请求。
+        2、支持使用了ConversionService]的实例对表单参数进行类型转换。
+        3、支持使用@NumberFormat、@NumberFormat注解对数据类型进行格式化。
+        4、支持使用@Valid对javaBean进行JSR-303验证。
+        5、支持使用@RequestBody、@ResponseBody。
+    -->
+    <mvc:annotation-driven />
+
+    <!--
+       支持AOP的注解支持，AOP底层使用代理技术
+       JDK动态代理，要求必须有接口 默认使用JDK的方式
+       cglib代理，生成子类对象，proxy-target-class="true"
+   -->
+    <aop:aspectj-autoproxy />
+</beans>
