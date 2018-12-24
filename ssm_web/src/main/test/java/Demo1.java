@@ -9,7 +9,6 @@ public class Demo1 {
     public void test1(){
         String encode = encoder.encode("123");
         //$2a$10$J1ec0.7Sdh0s6nH2ibRh5e9aDLw2uGyroQkIjmPJbp0d08nR/.O26
-        //$2a$10$NJKE95l9zPELNN0lQp5KZuq42J1IZm6VNPn4AnM1RQwl6orKm1dG.
         System.out.println(encode);
     }
 }
