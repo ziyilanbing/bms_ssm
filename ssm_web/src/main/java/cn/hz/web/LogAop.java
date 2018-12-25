@@ -25,10 +25,12 @@ public class LogAop {
 
     @Autowired
     private ISysLogService sysLogService;
-
-    private Date visitTime; //开始时间
-    private Class clazz; //访问的类
-    private Method method;//访问的方法
+    //开始时间
+    private Date visitTime;
+    //访问的类
+    private Class clazz;
+    //访问的方法
+    private Method method;
 
     @Before("execution(* cn.hz.web.*.*(..))")
     public void doBefore(JoinPoint jp) throws NoSuchMethodException {
